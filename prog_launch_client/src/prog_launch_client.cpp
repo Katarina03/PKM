@@ -28,7 +28,6 @@ int main(int argc, char* argv[])
 	struct sockaddr_in server_addr;
 	init_inet_address(&server_addr, host, port);
 
-	//Connect to the server
 	if (connect(client_socket, (sockaddr*)&server_addr, sizeof(sockaddr))) {
 		char err_msg[128] = "";
 		sprintf(err_msg, "Can't connect to the server %s:%d", host, port);
@@ -50,8 +49,6 @@ int main(int argc, char* argv[])
 		error_msg(err_msg);
 		return -1;
 	}
-
-
 
 	close_socket(client_socket);
 
