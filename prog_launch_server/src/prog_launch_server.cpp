@@ -13,7 +13,7 @@ void handle_connection(SOCKET socket, sockaddr_in* addr) {
 
         rc = recv(socket, (char*)&request, sizeof(request), 0);
 		compute(&request, &response);
-		rc = send(socket, (char*)&response, sizeof(response), 0); //pomenyat' SquareRootResponse i SquareRootRequest v shared tcp include
+		rc = send(socket, (char*)&response, sizeof(response), 0); 
 
     }
     close_socket(socket);
@@ -21,14 +21,8 @@ void handle_connection(SOCKET socket, sockaddr_in* addr) {
 }
 
 LaunchProgResponse* compute(LaunchProgRequest* rq, LaunchProgResponse* rs) {
-	//pipe for program location
 	char  psBuffer[128] = "";
 	FILE   *pPipe;
-
-	/* Run DIR so that it writes its output to a pipe. Open this
-	* pipe with read text attribute so that we can read it
-	* like a text file.
-	*/
 
 	if (!(pPipe = _popen(rq->data, "r"))) {
 		strcpy(rs->data, "Cant find programm !");
