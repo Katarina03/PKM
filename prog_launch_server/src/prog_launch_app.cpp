@@ -1,7 +1,6 @@
 #include "prog_launch_server.h"
 
 
-
 void exit_handler();
 
 SOCKET server_socket;
@@ -24,7 +23,6 @@ int main(int argc, char *argv[]) {
     sockaddr_in server_addr;
     init_inet_address(&server_addr, host, port);
 
-    //Bind socket to the address on the server
     if (bind(server_socket, (sockaddr *) &server_addr, sizeof(sockaddr))) {
         char err_msg[128] = "";
         sprintf(err_msg, "Can't bind socket to the port %d", port);
@@ -49,7 +47,6 @@ int main(int argc, char *argv[]) {
             return -1;
         }
         handle_connection(socket, &incom_addr);
-
 	
     }
     close_socket(server_socket);
